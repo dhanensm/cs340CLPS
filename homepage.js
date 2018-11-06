@@ -29,10 +29,10 @@ module.exports = function () {
         }
     });
 
-    /*adds an animal???*/
+    /*adds an animal matches video*/
     router.post('/', function (req, res) {
-        console.log(req.body.location)
-        console.log(req.body)
+        //console.log(req.body.location)
+        //console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO animal_table (name, type, age, color, location, Ftype, cost) VALUES (?, ?, ?, ?, ?, ?, ?)";
         var inserts = [req.body.name, req.body.type, req.body.age, req.body.color, req.body.location, req.body.Ftype, req.body.cost];
@@ -41,13 +41,16 @@ module.exports = function () {
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
+            }else{
+              res.redirect('/homepage');
             }
         });
     });
 
-    //adds an aisle???
+    //adds an aisle matches video
     //INSERT INTO aisle_table (contains)
     //VALUES (:containsInput);
+    /*I NEED TO FIGURE OUT HOW IT SEES THESE THINGS AND HOW TO MAKE This one DIFFERENT*/
     router.post('/', function (req, res) {
         console.log(req.body)
         var mysql = req.app.get('mysql');
@@ -58,6 +61,8 @@ module.exports = function () {
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
+            }else{
+              res.redirect('/homepage');
             }
         });
     });

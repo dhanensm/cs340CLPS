@@ -18,14 +18,14 @@
               <th>ID</th>
               <th>Item</th>
               <th>Brand Name</th>
-              <th>Cost</th> 
+              <th>Cost</th>
               <th>Location</th>
               <th>In Stock</th>
             </thead>
             <tbody>
                 {{#each supply}}
                 <tr>
-                    <td>{{id}}</td> 
+                    <td>{{id}}</td>
                     <td>{{item}}</td>
                     <td>{{bname}}</td>
                     <td>{{cost}}</td>
@@ -40,19 +40,19 @@
             Item: <input type="text" name="item"><br>
             Brand Name: <input type="text" name="bname"><br>
             Cost: <input type="text" name="cost"><br>
-            Location: <select name="location"> 
+            Location: <select name="location">
                 {{#each aisle}}
-                <option value="{{id}}">{{aisle}}</option>
+                <option value="{{id}}">{{id}}</option>
                 {{/each}}
             </select><br>
             Quantity: <input type="number" name="stock"><br>
-            <input type="submit" value="Submit">    
+            <input type="submit" value="Submit">
         </form>
         <h2>To update the quantity of an item, please enter it's ID number and the new quantity</h2>
-        <form id="updatestock" action="/supply" method="post">
-            Supply ID: <input type="text" name="ID"><br>
+        <form id="updatestock" action="/supplies" method="post">
+            Supply ID: <input type="text" name="id"><br>
             Quantity: <input type="text" name="stock"><br>
-            <input type="submit" value="Submit">    
+            <input type="submit" value="Submit">
         </form>
     </body>
 </html>

@@ -14,19 +14,19 @@
 <div>
 <h3>This is the page where you can add animals for adoption and add aisles<h3>
     <h2>Add animal for adoption:</h3>
-    <form id="addanimal" action="/animal" method="post">
+    <form id="addanimal" action="/homepage" method="post">
         Animal Name: <input type="text" name="name"><br>
         Type: <input type="text" name="type"><br>
         Age: <input type="number" name="age"><br>
         Color: <input type="text" name="color"><br>
-        Location: <select name="location"> 
+        Location: <select name="location">
             {{#each aisle}}
-            <option value="{{id}}">{{aisle}}</option>
+            <option value="{{id}}">{{id}}</option>
             {{/each}}
         </select><br>
-        Food Type: <input type="text" name="ftype"><br>
+        Food Type: <input type="text" name="Ftype"><br>
         Cost: <input type="text" name="cost"><br>
-        <input type="submit" value="Submit">    
+        <input type="submit" value="Submit">
     </form>
 </div>
 <br/>
@@ -37,16 +37,16 @@
             <th>Contains</th>
         </thead>
         <tbody>
-            {{#each aisle}}  
+            {{#each aisle}}
             <tr>
                 <td>{{id}}</td>>
                 <td>{{contains}}</td>
             </tr>
             {{/each}}
         </tbody>
-    </table>  
-    <form id="addaisle" action="/aisle" method="post">
-        New Aisle Contains: <input type="text" name="name"><br>
-        <input type="submit" value="Submit">    
-    </form>   
+    </table>
+    <form id="addaisle" action="/homepage" method="post">
+        New Aisle Contains: <input type="text" name="contains"><br>
+        <input type="submit" value="Submit">
+    </form>
 </html>
