@@ -1,0 +1,58 @@
+<!--- this is for homepage -->
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<head>
+    <h1>Corvallis' Littlest Pet Shop</h1>
+    <div class="topnav">
+        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/homepage.html">Home</a>
+        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/animal.html">Animals</a>
+        <a class="active" href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/supplies.html">Supplies</a>
+        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/transactions.html">Transactions</a>
+    </div>
+</head>
+    <body>
+        <table style="width:100%">
+            <thead ALIGN=LEFT>
+              <th>ID</th>
+              <th>Item</th>
+              <th>Brand Name</th>
+              <th>Cost</th> 
+              <th>Location</th>
+              <th>In Stock</th>
+            </thead>
+            <tbody>
+                {{#each supply}}
+                <tr>
+                    <td>{{id}}</td> 
+                    <td>{{item}}</td>
+                    <td>{{bname}}</td>
+                    <td>{{cost}}</td>
+                    <td>{{location}}</td>
+                    <td>{{stock}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <h2>To add a new supply, fill in the queries below</h2>
+        <form id="addstock" action="/supply" method="post">
+            Item: <input type="text" name="item"><br>
+            Brand Name: <input type="text" name="bname"><br>
+            Cost: <input type="text" name="cost"><br>
+            Location: <select name="location"> 
+                {{#each aisle}}
+                <option value="{{id}}">{{aisle}}</option>
+                {{/each}}
+            </select><br>
+            Quantity: <input type="text" name="stock"><br>
+            <input type="submit" value="Submit">    
+        </form>
+        <h2>To update the quantity of an item, please enter it's ID number and the new quantity</h2>
+        <form id="updatestock" action="/supply" method="post">
+            Supply ID: <input type="text" name="ID"><br>
+            Quantity: <input type="text" name="stock"><br>
+            <input type="submit" value="Submit">    
+        </form>
+    </body>
+</html>

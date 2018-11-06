@@ -1,0 +1,48 @@
+<!-- this is for the animal page -->
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+<head>
+        <h1>Corvallis' Littlest Pet Shop</h1>
+        <div class="topnav">
+            <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/homepage.html">Home</a>
+            <a class="active" href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/animal.html">Animals</a>
+            <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/supplies.html">Supplies</a>
+            <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/transactions.html">Transactions</a>
+          </div>
+    </head>
+    <body>
+        <table style="width:100%">
+            <thead ALIGN=LEFT>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Type</th> 
+              <th>Age</th>
+              <th>Color</th>
+              <th>Food Type</th>
+              <th>Location</th>
+              <th>Cost</th>
+            </thead>
+            <tbody>
+                {{#each animal}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{type}}</td> 
+                    <td>{{age}}</td>
+                    <td>{{color}}</td>
+                    <td>{{ftype}}</td>
+                    <td>{{location}}</td>
+                    <td>{{cost}}</td>
+                {{/each}}
+                </tr>
+            </tbody>    
+        </table>
+        <h3>Once an animal has been adopted, please enter it's ID number to remove them from the adoption table</h3>
+        <form id="removeanimal" action="/animal" method="post">
+            Animal ID: <input type="text" name="ID"><br>
+            <input type="submit" value="Submit">    
+        </form>
+    </body>
+</html>
