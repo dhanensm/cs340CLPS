@@ -6,10 +6,10 @@
 <head>
     <h1>Corvallis' Littlest Pet Shop</h1>
     <div class="topnav">
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/homepage.html">Home</a>
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/animal.html">Animals</a>
-        <a class="active" href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/supplies.html">Supplies</a>
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/transactions.html">Transactions</a>
+        <a class="active" href='/homepage'>Home</a>
+        <a href='/animal'>Animals</a>
+        <a href='/supplies'>Supplies</a>
+        <a href='/transactions'>Transactions</a>
     </div>
 </head>
     <body>
@@ -36,7 +36,7 @@
             </tbody>
         </table>
         <h2>To add a new supply, fill in the queries below</h2>
-        <form id="addstock" action="/supply" method="post">
+        <form id="addstock" action="/supplies" method="post">
             Item: <input type="text" name="item"><br>
             Brand Name: <input type="text" name="bname"><br>
             Cost: <input type="text" name="cost"><br>
@@ -45,7 +45,7 @@
                 <option value="{{id}}">{{aisle}}</option>
                 {{/each}}
             </select><br>
-            Quantity: <input type="text" name="stock"><br>
+            Quantity: <input type="number" name="stock"><br>
             <input type="submit" value="Submit">    
         </form>
         <h2>To update the quantity of an item, please enter it's ID number and the new quantity</h2>

@@ -2,9 +2,17 @@
 {{#each foo}}
 {{this}}
 {{/each}}
+<head>
+    <h1>Corvallis' Littlest Pet Shop</h1>
+    <div class="topnav">
+        <a class="active" href='/homepage'>Home</a>
+        <a href='/animal'>Animals</a>
+        <a href='/supplies'>Supplies</a>
+        <a href='/transactions'>Transactions</a>
+    </div>
+</head>
 <div>
-<h3>Hello Corvallis' Littlest Pet Shop employees! Here you can add new animals that are up for adoption at the store,
-    remove adopted animals, organize our inventory, and review past transactions!<h3>
+<h3>This is the page where you can add animals for adoption and add aisles<h3>
     <h2>Add animal for adoption:</h3>
     <form id="addanimal" action="/animal" method="post">
         Animal Name: <input type="text" name="name"><br>
@@ -29,7 +37,7 @@
             <th>Contains</th>
         </thead>
         <tbody>
-            {{#each animal}}  
+            {{#each aisle}}  
             <tr>
                 <td>{{id}}</td>>
                 <td>{{contains}}</td>

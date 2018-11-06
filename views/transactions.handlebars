@@ -6,10 +6,10 @@
 <head>
 <h1>Corvallis' Littlest Pet Shop</h1>
     <div class="topnav">
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/homepage.html">Home</a>
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/animal.html">Animals</a>
-        <a href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/supplies.html">Supplies</a>
-        <a class="active" href="http://web.engr.oregonstate.edu/~dhanensm/CLPS/transactions.html">Transactions</a>
+        <a href='/homepage'>Home</a>
+        <a href='/animal'>Animals</a>
+        <a href='/supplies'>Supplies</a>
+        <a class="active" href='/transactions'>Transactions</a>
     </div>
 </head>
 <body>
@@ -41,9 +41,9 @@
             <tr>
                 <td>{{id}}</td>
                 <td>{{cname}}</td>
-                <td>{{item}}</td>
-            {{/each}}
+                <!--<td>{{item}}</td>-->
             </tr>
+            {{/each}}
         </tbody>  
     </table>
     <h2>You can help customers return supplies but they CANNOT return animals!</h2>
