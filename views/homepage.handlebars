@@ -5,7 +5,8 @@
 <head>
     <h1>Corvallis' Littlest Pet Shop</h1>
     <div class="topnav">
-        <a class="active" href='/homepage'>Home</a>
+        <a href='/'>Home</a>
+        <a class="active" href='/homepage'>Add Adoption and Aisle</a>
         <a href='/animal'>Animals</a>
         <a href='/supplies'>Supplies</a>
         <a href='/transactions'>Transactions</a>
@@ -24,7 +25,11 @@
             <option value="{{id}}">{{id}}</option>
             {{/each}}
         </select><br>
-        Food Type: <input type="text" name="Ftype"><br>
+        Food Type: <select name="ftype">
+            {{#each supply}}
+            <option value="{{id}}">{{bname}}</option>
+            {{/each}}
+        </select><br>
         Cost: <input type="text" name="cost"><br>
         <input type="submit" value="Submit">
     </form>

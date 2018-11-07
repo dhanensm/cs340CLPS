@@ -4,7 +4,7 @@ module.exports = function () {
 
     //diaplay supplies
     function getAisles(res, mysql, context, complete) {
-        mysql.pool.query("SELECT id FROM aisle_table", function (error, results, fields) {
+        mysql.pool.query("SELECT id, contains FROM aisle_table", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -58,7 +58,7 @@ module.exports = function () {
             }
         });
     });
-    router.post('/', function (req, res) {
+    router.post('/:update', function (req, res) {
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "UPDATE supply_table SET stock=? WHERE id=?";
