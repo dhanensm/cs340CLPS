@@ -19,7 +19,7 @@ module.exports = function () {
     router.get('/', function (req, res) {
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = []; //"deleteperson.js","filterpeople.js","searchpeople.js"
+        context.jsscripts = []; //"deleteperson.js","filterpeople.js","searchpeople.js "deleteanimal.js""
         var mysql = req.app.get('mysql');
         getAnimal(res, mysql, context, complete);
         function complete() {
@@ -32,20 +32,35 @@ module.exports = function () {
 
     /*delee an animal*/
     //    DELETE FROM animal_table WHERE id= :animalIdSelectedInBrowser;
-    router.delete('/:id', function (req, res) {
+    // router.delete('/:id', function (req, res) {
+    //     var mysql = req.app.get('mysql');
+    //     var sql = "DELETE FROM animal_table WHERE id = ?";
+    //     var inserts = [req.params.id];
+    //     sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+    //         if (error) {
+    //             res.write(JSON.stringify(error));
+    //             res.status(400);
+    //             res.end();
+    //         } else {
+    //             res.status(202).end();
+    //         }
+    //     })
+    // })
+    router.post('/', function (req, res) {
+        console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "DELETE FROM animal_table WHERE id = ?";
-        var inserts = [req.params.id];
+        var inserts = [req.body.id];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
+                console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
-                res.status(400);
                 res.end();
-            } else {
-                res.status(202).end();
+            }else{
+              res.redirect('/animal');
             }
-        })
-    })
+        });
+    });
 
     return router;
 }();
