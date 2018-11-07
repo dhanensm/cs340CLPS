@@ -32,9 +32,10 @@ module.exports = function () {
         var mysql = req.app.get('mysql');
         getSupplies(res, mysql, context, complete);
         getAisles(res, mysql, context, complete);
+
         function complete() {
             callbackCount++;
-            if (callbackCount >= 1) {
+            if (callbackCount >= 2) {
                 res.render('supplies', context);
             }
 
