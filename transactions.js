@@ -72,23 +72,69 @@ module.exports = function () {
         //console.log(req.body.homeworld)
         console.log("made it in my fn");
         console.log(req.body);
-        console.log(req.type);
-
-      //  if(req.type == "animal"){
+        console.log(req.body.type)
+        if(req.body.type == "animal"){
           console.log("inserting animal");
+
           var mysql = req.app.get('mysql');
-          var sql = "INSERT INTO transaction_table (cname) VALUES (?); INSERT INTO adoption_table (tid, aid) VALUES (LAST_INSERT_ID(), ?) ";
-          var inserts = [req.cname, req.supply];
+          var sql = "INSERT INTO `transaction_table` (`cname`) VALUES (?);";
+          var inserts = [req.body.cname];
           sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
               if (error) {
                   console.log(JSON.stringify(error))
                   res.write(JSON.stringify(error));
                   res.end();
               }else {
-                res.redirect('/transactions');
+                //console.log("eeeeeeeeeeeh");
+                //console.log(results.insertId);
+                //console.log("fuck");
+                var temp = results.insertId;
+                //res.redirect('/transactions');
+                //var mysql = req.app.get('mysql');
+                sql = "INSERT INTO `adoption_table` (`tid`, `aid`) VALUES (?, ?);";
+                inserts = [temp, req.body.item];
+                sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+                    if (error) {
+                        console.log(JSON.stringify(error))
+                        res.write(JSON.stringify(error));
+                        res.end();
+                    }
+                    res.redirect('/transactions');
+                });
               }
           });
-        //}
+        }
+        if(req.body.type == "supply"){
+          console.log("inserting supply");
+
+          var mysql = req.app.get('mysql');
+          var sql = "INSERT INTO `transaction_table` (`cname`) VALUES (?);";
+          var inserts = [req.body.cname];
+          sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+              if (error) {
+                  console.log(JSON.stringify(error))
+                  res.write(JSON.stringify(error));
+                  res.end();
+              }else {
+                //console.log("eeeeeeeeeeeh");
+                //console.log(results.insertId);
+                //console.log("fuck");
+                var temp = results.insertId;
+                //res.redirect('/transactions');
+                //var mysql = req.app.get('mysql');
+                sql = "INSERT INTO `purchase_table` (`tid`, `sid`) VALUES (?, ?);";
+                inserts = [temp, req.body.item];
+                sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+                    if (error) {
+                        console.log(JSON.stringify(error))
+                        res.write(JSON.stringify(error));
+                        res.end();
+                    }
+                    res.redirect('/transactions');
+                });
+              }
+          });
+        }
         // if (req.type == "supply"){
         //   var mysql = req.app.get('mysql');
         //   var sql = "INSERT INTO transaction_table (cname) VALUES (?); INSERT INTO purchase_table (tid, sid) VALUES (LAST_INSERT_ID(), ?)";
