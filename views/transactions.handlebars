@@ -16,14 +16,14 @@
 <body>
     <h2>Here you can add new transactions and find the itemized reciepts</h2>
     <h3>New transaction:</h3>
-    <form id="addtransaction" action="/transactions" method="post">
+    <form id="addtransaction" action="/transactions/addtrans" method="post">
         Customer Name: <input type="text" name="cname"><br>
-        Purchase type: <select name="type"> 
+        Purchase type: <select name="type">
             <option value="animal">Animal</option>
             <option value="supply">Supply</option>
         </select><br>
         ID of : <input type="text" name="supply"><br>
-        <input type="submit" value="Submit">    
+        <input type="submit" value="Submit">
     </form>
     <form id='search_transactions' action='' method=''>
         <!--- this form does not submit directly, the button handles all the interaction with backend -->
@@ -33,27 +33,27 @@
     </form>
     <table style="width:100%">
         <thead ALIGN=LEFT>
-            <th>Transaction Number</th>  
+            <th>Transaction/Adoption ID</th>
             <th>Customer Name</th>
-            <th>Transaction</th>
+            <th>item</th>
         </thead>
         <tbody>
             {{#each transactions}}
             <tr>
-                <td>{{id}}</td>
-                <td>{{cname}}</td>
-                <!--<td>{{item}}</td>-->
+                <td>{{ID}}</td>
+                <td>{{Name}}</td>
+                <td>{{Item}}</td>
             </tr>
             {{/each}}
-        </tbody>  
+        </tbody>
     </table>
     <h2>You can help customers return supplies but they CANNOT return animals!</h2>
     <h3>Enter the information of the item being returned below:</h3>
     <form id="returnsupply" action="/transactions" method="post">
-        Transaction ID: <input type="text" name="ID"><br>
+        Transaction ID: <input type="text" name="id"><br>
         Customer Name: <input type="text" name="cname"><br>
         Supply Name: <input type="text" name="bname"><br>
-        <input type="submit" value="Submit">    
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>
