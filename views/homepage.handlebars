@@ -15,7 +15,7 @@
 <div>
 <h3>This is the page where you can add animals for adoption and add aisles<h3>
     <h2>Add animal for adoption:</h3>
-    <form id="addanimal" action="/homepage" method="post">
+    <form id="addanimal" action="/homepage/addanimal" method="post">
         Animal Name: <input type="text" name="name"><br>
         Type: <input type="text" name="type"><br>
         Age: <input type="number" name="age"><br>
@@ -27,7 +27,7 @@
         </select><br>
         Food Type: <select name="ftype">
             {{#each supply}}
-            <option value="{{id}}">{{bname}}</option>
+            <option value={{id}}>{{bname}}</option>
             {{/each}}
         </select><br>
         Cost: <input type="text" name="cost"><br>
@@ -50,7 +50,7 @@
             {{/each}}
         </tbody>
     </table>
-    <form id="addaisle" action="/homepage" method="post">
+    <form id="addaisle" action="/homepage/addaisle" method="post">
         New Aisle Contains: <input type="text" name="contains"><br>
         <input type="submit" value="Submit">
     </form>

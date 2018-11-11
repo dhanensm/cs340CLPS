@@ -1,4 +1,4 @@
-//HOMEPAGE???
+//HOMEPAGE
 module.exports = function () {
     var express = require('express');
     var router = express.Router();
@@ -24,7 +24,7 @@ module.exports = function () {
             complete();
         });
     }
-
+    //this is the render fn, it displays tables... i think
     router.get('/', function (req, res) {
         var callbackCount = 0;
         var context = {};
@@ -42,12 +42,13 @@ module.exports = function () {
     });
 
     /*adds an animal matches video*/
-    router.post('/', function (req, res) {
+    router.post('/addanimal', function (req, res) {
+
         //console.log(req.body.location)
-        //console.log(req.body)
+        console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO animal_table (name, type, age, color, location, Ftype, cost) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        var inserts = [req.body.name, req.body.type, req.body.age, req.body.color, req.body.location, req.body.Ftype, req.body.cost];
+        var inserts = [req.body.name, req.body.type, req.body.age, req.body.color, req.body.location, req.body.ftype, req.body.cost];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))
@@ -59,11 +60,12 @@ module.exports = function () {
         });
     });
 
+
     //adds an aisle matches video
-    //INSERT INTO aisle_table (contains)
-    //VALUES (:containsInput);
     /*I NEED TO FIGURE OUT HOW IT SEES THESE THINGS AND HOW TO MAKE This one DIFFERENT*/
-    router.post('/', function (req, res) {
+
+    router.post('/addaisle', function (req, res) {
+        console.log(req.body.todo + " is added to top of the list.");
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO aisle_table (contains) VALUES (?)";
