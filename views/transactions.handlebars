@@ -1,4 +1,4 @@
-<!--- this is for homepage -->
+<!doctype html>
 <html>
 {{#each foo}}
 {{this}}
@@ -18,13 +18,36 @@
     <h3>New transaction:</h3>
     <form id="addtransaction" action="/transactions/addtrans" method="post">
         Customer Name: <input type="text" name="cname"><br>
-        Purchase type: <select name="type">
+        Purchase type: <select name="type" id="changingtype" onchange="change_id()"> <!-- ONCHANGE here to change live -->
             <option value="animal">Animal</option>
             <option value="supply">Supply</option>
         </select><br>
-        ID of : <input type="number" name="item"><br>
+        Animal: <select name="animalid" id="animalid">
+            {{#each animal}}
+            <option value="{{id}}">{{name}}</option>
+            {{/each}}
+            </select><br>
+        Supply: <select name="supplyid" id="supplyid" disabled>
+            {{#each supply}}
+            <option value="{{id}}">{{bname}}</option>
+            {{/each}}
+            </select><br>
         <input type="submit" value="Submit">
     </form>
+    <script>
+      let a = document.getElementById('animalid');
+      let o = document.getElementById('supplyid');
+      const change_id = () => {
+        if (document.getElementById('changingtype').value=="animal") {
+          a.disabled = false;
+          o.disabled = true;
+        } else {
+          a.disabled = true;
+          o.disabled = false;
+        }
+      }
+    </script>
+    <div scrible-ignore="" id="skribel__annotation_ignore_chromeExtensionFlag" class="skribel__chromeExtension" style="display: none;"></div>
     <form id='search_transactions' action='' method=''>
         <!--- this form does not submit directly, the button handles all the interaction with backend -->
         <label> Search for transactions by customer name:</label>
@@ -47,12 +70,11 @@
             {{/each}}
         </tbody>
     </table>
-    <h2>You can help customers return supplies but they CANNOT return animals!</h2>
+    <h2>You can help customers return supplies and delete it from the database, but they CANNOT return animals!</h2>
     <h3>Enter the information of the item being returned below:</h3>
     <form id="returnsupply" action="/transactions" method="post">
         Transaction ID: <input type="text" name="id"><br>
         Customer Name: <input type="text" name="cname"><br>
-        Supply Name: <input type="text" name="bname"><br>
         <input type="submit" value="Submit">
     </form>
 </body>
