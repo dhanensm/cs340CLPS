@@ -25,11 +25,11 @@
         ID of : <input type="number" name="item"><br>
         <input type="submit" value="Submit">
     </form>
-    <form id='search_transactions' action='/transactions/search_transactions' method='post'>
+    <form id='search_transactions' action='/transactions/search_transactions' method='get'>
         <!--- this form does not submit directly, the button handles all the interaction with backend -->
         <label> Search for transactions by customer name:</label>
         <input id='cname_search_string' type='text' name='cname_search_string' value=''>
-        <input type="submit" value="Search">
+        <input type="button" value="Search" onclick="searchTransactionsByCame()">
     </form>
     <table style="width:100%">
         <thead ALIGN=LEFT>
