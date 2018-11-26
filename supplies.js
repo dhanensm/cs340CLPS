@@ -43,7 +43,7 @@ module.exports = function () {
     });
 
     //add new supply
-    router.post('/', function (req, res) {
+    router.post('/addstock', function (req, res) {
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO supply_table (item, bname, cost, location, stock) VALUES (?, ?, ?, ?, ?)";
@@ -58,17 +58,19 @@ module.exports = function () {
             }
         });
     });
-    router.post('/:update', function (req, res) {
+    router.post('/updatestock', function (req, res) {
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "UPDATE supply_table SET stock=? WHERE id=?";
-        var inserts = [req.body.stock, req.params.id];
+        var inserts = [req.body.stock, req.body.supplyid];
+        console.log("gonna do a thing")
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
+                console.log("done with the thing")
               res.redirect('/supplies');
             }
         });
