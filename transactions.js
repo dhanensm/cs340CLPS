@@ -1,18 +1,4 @@
-    // function getItems(res, mysql, context, complete, req) {
-    //     if (req.body.type == "Animal") {
-    //         mysql.pool.query("SELECT id, name FROM animal_table", function (error, results, fields) {
-    //             if (error) {
-    //                 res.write(JSON.stringify(error));
-    //                 res.end();
-    //             }
-    //             context.items = results;
-    //             complete();
-    //         });
-    //     }
-    //     else (req.body.type == "Supply"){
-    //         getAnimal(res, mysql, context, complete, req);
-    //      }
-    // }
+
 
 module.exports = function () {
     var express = require('express');
@@ -39,7 +25,10 @@ module.exports = function () {
        });
      }
      function getTransactionsByCname(req, res, mysql, context, complete){
-        var query = "(SELECT tr.id AS 'ID', tr.cname AS 'Name', an.type AS 'Item' FROM transaction_table tr INNER JOIN adoption_table ad ON tr.id = ad.tid INNER JOIN animal_table an ON ad.aid = an.id WHERE cname = " + mysql.pool.escape(req.params.s) + ") UNION ALL (SELECT tr2.id AS 'ID', tr2.cname AS 'Name', su.item AS 'Item' FROM transaction_table tr2 INNER JOIN purchase_table pr ON tr2.id = pr.tid INNER JOIN supply_table su ON pr.sid=su.id WHERE cname = " +  mysql.pool.escape(req.params.s) + ")";
+        tempvar=mysql.pool.escape(req.params.s)
+        fullvar= '%'+tempvar+'%'
+        console.log(fullvar) 
+        var query = "(SELECT tr.id AS 'ID', tr.cname AS 'Name', an.type AS 'Item' FROM transaction_table tr INNER JOIN adoption_table ad ON tr.id = ad.tid INNER JOIN animal_table an ON ad.aid = an.id WHERE cname LIKE "  + mysql.pool.escape(req.params.s) +  ") UNION ALL (SELECT tr2.id AS 'ID', tr2.cname AS 'Name', su.item AS 'Item' FROM transaction_table tr2 INNER JOIN purchase_table pr ON tr2.id = pr.tid INNER JOIN supply_table su ON pr.sid=su.id WHERE cname LIKE "  +  mysql.pool.escape(req.params.s) + ")";
         mysql.pool.query(query, function(error, results, fields){
           if(error){
             res.write(JSON.stringify(error));
